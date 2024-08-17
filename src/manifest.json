@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Melobu Product Checker",
+    "version": "1.0.0",
+
+    "description": "メロンブックスで確認済み・注文済みの商品を判るようにする拡張機能",
+
+    "content_scripts": [{
+        "matches": ["https://www.melonbooks.co.jp/*"],
+        "js": ["content_script.js"]
+    }],
+    "background": {
+        "service_worker": "service_worker.js"
+    },
+    "options_page": "options.html",
+    "host_permissions": [
+        "https://www.melonbooks.co.jp/*"
+    ],
+    "permissions": [
+        "storage"
+    ]
+}
