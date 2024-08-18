@@ -1,4 +1,4 @@
-# Melobu Product Checker
+# Melobu Goods Checker
 
 メロンブックスで確認済み・注文済みの商品を判るようにする拡張機能
 
