@@ -142,3 +142,42 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     return true;
 });
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    console.log('contextMenus.onClicked', info.menuItemId, info, tab);
+    switch (info.menuItemId)
+    {
+    case 'setCheckedItem':
+        {
+            const itemId = info.linkUrl.match(/\?product_id=(\d+)/)[1];
+            update_checked_status(itemId, true);
+            chrome.tabs.sendMessage(tab.id, ['setCheckedItem', itemId]);
+        }
+        break;
+    case 'unsetCheckedItem':
+        {
+            const itemId = info.linkUrl.match(/\?product_id=(\d+)/)[1];
+            update_checked_status(itemId, false);
+            chrome.tabs.sendMessage(tab.id, ['unsetCheckedItem', itemId]);
+        }
+        break;
+    }
+});
+
+chrome.runtime.onInstalled.addListener((details) => {
+    chrome.contextMenus.create({
+        id: 'setCheckedItem',
+        contexts: ['link'],
+        documentUrlPatterns: ['https://www.melonbooks.co.jp/*'],
+        targetUrlPatterns: ['https://www.melonbooks.co.jp/detail/detail.php?product_id=*'],
+        title: '確認済み'
+    });
+    
+    chrome.contextMenus.create({
+        id: 'unsetCheckedItem',
+        contexts: ['link'],
+        documentUrlPatterns: ['https://www.melonbooks.co.jp/*'],
+        targetUrlPatterns: ['https://www.melonbooks.co.jp/detail/detail.php?product_id=*'],
+        title: '未確認'
+    });
+});

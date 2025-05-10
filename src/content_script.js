@@ -13,7 +13,28 @@ function getProductIdFromUrl(url) {
     return new URL(url).searchParams.get('product_id');
 }
 
+function onWorkerMessage([message, ...args], sender, sendResponse) {
+    //console.log('onWorkerMessage', message, args);
+    switch (message)
+    {
+    case 'setCheckedItem':
+        {
+            const itemId = args[0];
+            document.querySelectorAll(`a[href*="/detail/detail.php?product_id=${itemId}"]`).forEach(e => { e.style.opacity = '0.4'; });
+        }
+        break;
+    case 'unsetCheckedItem':
+        {
+            const itemId = args[0];
+            document.querySelectorAll(`a[href*="/detail/detail.php?product_id=${itemId}"]`).forEach(e => { e.style.opacity = '1.0'; });
+        }
+        break;
+    }
+}
+
 async function main() {
+    chrome.runtime.onMessage.addListener(onWorkerMessage);
+
     // 通常注文履歴ページ
     if (location.pathname === '/mypage/history.php') {
         const ids = Array.from(document.querySelectorAll('.history-detail__product-info tr:nth-child(1)>td')).map(e=>e.textContent.trim());
