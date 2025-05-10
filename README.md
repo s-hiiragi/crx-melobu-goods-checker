@@ -5,6 +5,7 @@
 ## 機能
 
 - [商品ページ](https://www.melonbooks.co.jp/detail/detail.php?product_id=2502182)に確認済みのチェックボックスを表示します
+- 検索結果ページ等で商品のサムネイル画像を右クリックし、`Melobu Goods Checker`のサブメニューからでも確認済みの設定を行えます
 - 以下のページを開いた際に、注文済みの商品IDのリストを更新します
   - [通常注文履歴ページ](https://www.melonbooks.co.jp/mypage/history.php)
   - [注文の詳細情報ページ](https://www.melonbooks.co.jp/mypage/history_detail.php)
