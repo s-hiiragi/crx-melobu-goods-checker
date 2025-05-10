@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Melobu Goods Checker",
-    "version": "1.0.2",
+    "version": "1.0.3",
 
     "description": "メロンブックスで確認済み・注文済みの商品を判るようにする拡張機能",
     "icons": {

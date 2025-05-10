@@ -29,7 +29,9 @@ async function main() {
     }
 
     // 商品ページ
-    if (location.pathname === '/detail/detail.php') {
+    if (location.pathname === '/detail/detail.php' ||
+        location.pathname === '/products/detail.php') {
+
         const productId = getProductIdFromUrl(location.href);
 
         const checkbox = document.createElement('div');
