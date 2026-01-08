@@ -39,18 +39,16 @@ async function main() {
     if (location.pathname === '/mypage/history.php') {
         const ids = Array.from(document.querySelectorAll('.history-detail__product-info tr:nth-child(1)>td')).map(e=>e.textContent.trim());
         await MyExtension.append_ordered_items({itemIds: ids});
-        return;
+        // fallthrough
     }
-
     // 通常注文履歴の注文の詳細情報ページ
-    if (location.pathname === '/mypage/history_detail.php') {
+    else if (location.pathname === '/mypage/history_detail.php') {
         const ids = Array.from(document.querySelectorAll('.history-detail__product-info tr:nth-child(1)>td')).map(e=>e.textContent.trim());
         await MyExtension.append_ordered_items({itemIds: ids});
-        return;
+        // fallthrough
     }
-
     // 商品ページ
-    if (location.pathname === '/detail/detail.php' ||
+    else if (location.pathname === '/detail/detail.php' ||
         location.pathname === '/products/detail.php') {
 
         const productId = getProductIdFromUrl(location.href);
